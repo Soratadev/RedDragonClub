@@ -2,13 +2,13 @@ import {Component, computed, input, output} from '@angular/core';
 import { BoardGame } from '../../shared/interfaces/boardgame.interface';
 import { bookedChange } from '../../shared/interfaces/bookedChange.interface';
 import {CommonModule} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-bg-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './bg-item.component.html',
-  styleUrl: './bg-item.component.scss'
 })
 export class BgItemComponent {
   boardgame = input.required<BoardGame>();

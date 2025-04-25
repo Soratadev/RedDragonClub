@@ -1,6 +1,6 @@
-<div class="rounded border border-gray-950 m-1 bg-gradient-to-bl from-gray-400 via-zinc-300 to-slate-400 2xl:w-64 xl:w-56 lg:w-48 md:w-40 sm:w-32">
+<div class="rounded inline-block border border-gray-950 m-1 bg-gradient-to-bl from-gray-400 via-zinc-300 to-slate-400 2xl:w-60 xl:w-56 lg:w-48 md:w-40 sm:w-32">
   <div class=" my-4">
-    <img [src]="boardgame().Cover" alt="bg-item" class="mx-auto rounded-2xl border border-gray-950 2xl:w-52 xl:w-48 lg:w-40 md:w-32 sm:w-24"/>
+    <img [src]="boardgame().Cover" alt="bg-item" class="mx-auto rounded-2xl border border-gray-950 2xl:h-52 xl:h-48 lg:h-40 md:h-32 sm:h-24"/>
     <!--@if (this.boardgame().Booked) {
       <div class="bg-red-400 text-white text-center font-bold">Booked</div>
     }-->
@@ -11,28 +11,11 @@
       <label [for]="'bg-item-' + attribute.key" class="font-bold">{{ attribute.label }}: </label>
       <span [id]="'bg-item-' + attribute.key" [class]="'bg-item-' + attribute.key">{{ attribute.value }}</span><br/>
     </div>
-
-    <!--<label for="bg-item-title" class="font-bold">Title: </label>
-    <span id="bg-item-title" class="bg-item-title">{{ boardgame().Name}}</span><br/>
-    <label for="bg-item-designer" class="font-bold">Designer: </label>
-    <span id="bg-item-designer" class="bg-item-designer">{{ boardgame().Designer}}</span><br/>
-    <label for="bg-item-players" class="font-bold">Players: </label>
-    <span id="bg-item-players" class="bg-item-players">{{ boardgame().Players }}</span><br/>
-    <label for="bg-item-playing-time" class="font-bold">Playing time: </label>
-    <span id="bg-item-playing-time" class="bg-item-playing-time">{{ boardgame().Playing_time }}</span><br/>
-    <label for="bg-item-category" class="font-bold">Category: </label>
-    <span id="bg-item-category" class="bg-item-category">{{ boardgame().Category }}</span><br/>
-    <label for="bg-item-complexity" class="font-bold">Complexity: </label>
-    <span id="bg-item-complexity" class="bg-item-complexity">{{ boardgame().Complexity }}</span><br/>
-    <label for="bg-item-age" class="font-bold">Age: </label>
-    <span id="bg-item-age" class="bg-item-age">{{ boardgame().Age }}</span><br/>
-    <label for="bg-item-description" class="font-bold">Description: </label>
-    <span id="bg-item-description" class="bg-item-description">{{ boardgame().Description }}</span><br/>-->
     <hr/>
     <div class="flex justify-around">
-      <button class="rounded-full my-4 p-2 border-2 border-gray-950 bg-blue-200 hover:bg-blue-400 font-bold">Details</button>
-      <button (click)="toggleBooking()" class="rounded-full my-4 p-2 border-2 border-gray-950 bg-green-200 hover:bg-green-400 font-bold">Book</button>
+      <button class="rounded-full my-4 p-2 border-2 border-gray-950 bg-blue-200 hover:bg-blue-400 font-bold" [routerLink]="['/bg', boardgame().id]">Details</button>
+      <button class="rounded-full my-4 p-2 border-2 border-gray-950 bg-yellow-200 hover:bg-yellow-400 font-bold" [routerLink]="['/bg', 'update', boardgame().id]">Edit</button>
+      <button (click)="toggleBooking()" class="rounded-full my-4 p-2 border-2 border-gray-950 bg-green-200 hover:bg-green-400 font-bold"> <!--[routerLink]="['/bg', 'book', boardgame().id]"-->Book</button>
     </div>
-
   </div>
 </div>

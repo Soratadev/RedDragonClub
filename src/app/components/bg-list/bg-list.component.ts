@@ -8,7 +8,6 @@ import {bookedChange} from '../../shared/interfaces/bookedChange.interface';
   standalone: true,
   imports: [BgItemComponent],
   templateUrl: './bg-list.component.html',
-  styleUrl: './bg-list.component.scss'
 })
 export class BgListComponent {
   boardgames = input.required<BoardGame[]>();
@@ -16,5 +15,7 @@ export class BgListComponent {
   saveBooked({boardgame, Booked}: bookedChange): void {
     boardgame.Booked = Booked;
   }
+
+  //video 8, no termina de convencerme el llevarme el metodo saveBooked a un servicio. Revisar más adelante.
 
 }

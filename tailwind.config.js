@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.html', './src/**/*.js'],
+  content: ['./src/**/*.html', './src/**/*.ts'],
   theme: {
     extend: {
-      granate: "#4B181B",
-      dorado: "#DBAB58",
-
+      colors:{
+        granate: "#4B181B",
+        dorado: "#DBAB58",
+      }
     },
   },
   plugins: [],

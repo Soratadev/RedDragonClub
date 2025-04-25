@@ -1,13 +1,15 @@
-<h2 class="rounded bg-green-200 p-2 w-64 border border-gray-950 text-center font-bold">ADD A NEW BOARDGAME</h2>
 <div class="w-64">
   <div class="rounded bg-yellow-50 border border-gray-950">
     <h4 class="bg-red-500 text-white text-center"> {{ message }}</h4>
-    <form action="" [formGroup]="bgForm" (ngSubmit)="addBg()">
+    <form action="" [formGroup]="bgForm()" (ngSubmit)="addBg()">
       <div id="row" class="m-1 p-1">
         <div class="input-group">
           <p><label for="name" class="font-bold">Name: </label></p>
           <input type="text" id="name" name="name" placeholder=" Name" formControlName="Name" class="border border-gray-950">
         </div>
+        @if(this.bgForm().get('Name')?.dirty && this.bgForm().get('Name')?.invalid){
+          <div class="text-red-500" *ngIf="this.bgForm().get('Name')?.getError('required')">Name is required</div>
+        }
         <div class="input-group">
           <p><label for="designer" class="font-bold">Designer: </label></p>
           <input type="text" id="designer" name="designer" placeholder=" Designer" formControlName="Designer" class="border border-gray-950">
@@ -36,29 +38,31 @@
           <p><label for="cover" class="font-bold">Cover: </label></p>
           <select id="cover" name="cover" formControlName="Cover" class="border border-gray-950">
             <option value="" disabled selected></option>
-            <option value="https://previews.dropbox.com/p/thumb/ACi5_-34vXc2alplA4XtdKCtBjwoqaG09SWlVxjg9iHmRqgjKZDzAlkZrxoSwDzmm_QXqups3hrMMrMTB6nx9VMyj_G9LBB641plcVh-07TTlY6M0FrQcUi02Xy0RiBFo6Ut6KAlAhhLCYNb21NZomTOS4rZb9cWUiBNeoj6kmdGl0Dpk9tqfucuesg7YPUkg9lJ9ikREboaVGYZFcnU8NTXg2tl9Icd0Mk7nadDMrdpEn9Ee3jxgYEJAzeTsSSlfhx7b50zdlH4OpDvpKfy7kqHeJTK_zuUkWiWAIJJ1AAnk9S8sm0tQ1U_eQa590ubZVgWFsId0lOx9TU5MCp-w-o9/p.jpeg">7 Wonders</option>
-            <option value="https://drive.google.com/file/d/1DAOPr2Q970JmjRM6a8u7Z5xs7_5YLe_m/view?usp=drive_link">Dominion</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
-            <option value="url">url</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/7wonders.jpg?raw=true">7 Wonders</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/arkham-horror.jpg?raw=true">Arkham Horror</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/azul.jpg?raw=true">Azul</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/blood-rage.jpg?raw=true">Blood Rage</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/carcassonne.jpg?raw=true">Carcassonne</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/catan.jpg?raw=true">Catan</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/descent.jpg?raw=true">Descent</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/dice-forge.jpg?raw=true">Dice Forge</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/dixit.jpg?raw=true">Dixit</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/dominion.jpg?raw=true">Dominion</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/gloomhaven.jpg?raw=true">Gloomhaven</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/lotr-journey.jpg?raw=true">LOTR Journeys</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/mage-knight.jpeg?raw=true">Mage Knight</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/mansion-of-madness.jpg?raw=true">Mansion of Madness</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/pandemic.jpg?raw=true">Pandemic</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/smallworld.jpg?raw=true">Small World</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/stone-age.jpg?raw=true">Stone Age</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/sw-rebellion.jpg?raw=true">Star Wars: Rebellion</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/talisman.jpg?raw=true">Talisman</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/terraforming-mars.jpg?raw=true">Terraforming Mars</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/ticket-to-ride.jpeg?raw=true">Ticket to Ride: Europa</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/twilight-imperium.jpeg?raw=true">Twilight Imperium</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/war-of-the-ring.jpg?raw=true">War of the Ring</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/wingspan.jpg?raw=true">Wingspan</option>
+            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/zombicide.jpeg?raw=true">Zombicide</option>
           </select>
         </div>
         <div class="input-group">
@@ -66,14 +70,12 @@
           <textarea id="description" name="description" placeholder="Description" formControlName="Description" class="border border-gray-950"></textarea>
         </div>
         <div class="flex justify-center">
-          <button class="rounded my-4 p-2 border-2 border-gray-950 bg-green-200 hover:bg-green-400 font-bold">Add</button>
+          <button [ngClass]="{'disabled': bgForm().invalid, 'bg-green-200 hover:bg-green-400': bgForm().valid}"
+                  class="rounded my-4 p-2 border-2 border-gray-950 bg-green-200 hover:bg-green-400 font-bold">{{ textButton() }}
+          </button>
         </div>
       </div>
     </form>
   </div>
-
-
-
-
 </div>
 

@@ -1,9 +1,0 @@
-<div class="bg-[rgb(75,24,27)] p-1">
-  <h1 class="text-5xl font-bold" style="color: rgb(219,171,88)">Welcome to {{ title }}, your hobby center</h1>
-</div>
-<router-outlet />
-<div class="flex flex-row">
-  <app-bg-list [boardgames]="boardgames" class=""/>
-  <app-bg-form (addBG)="addBG($event)" class=""/>
-</div>
-

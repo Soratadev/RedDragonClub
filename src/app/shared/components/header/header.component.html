@@ -1,0 +1,18 @@
+<div class="bg-granate p-1">
+  <nav class="flex flex-wrap items-center justify-between mx-auto">
+    <a [routerLink]="['home']">
+      <img src="assets/img/dragon.jpeg" alt="El Dragón Rojo" class="flex items-center w-16"/>
+    </a>
+    <div class="">
+      <p class="text-5xl font-bold self-center text-dorado font-serif">Red Dragon Club</p>
+      <p class="text-xl font-bold self-center text-dorado text-end">your hobby center</p>
+    </div>
+    <ul class="flex flex-row text-white space-x-4 mr-2 font-medium">
+      <li><a [routerLink]="['home']" routerLinkActive="text-dorado">Home</a></li>
+      <li><a [routerLink]="['bg', 'catalog']" routerLinkActive="text-dorado">Catalog</a></li>
+      <li><a href="https://www.eldragonrojo.es/" target="_blank" class="">Shop</a></li>
+      <li><a [routerLink]="['auth', 'login']" routerLinkActive="text-dorado">Login</a></li>
+      <li><a [routerLink]="['auth', 'register']" routerLinkActive="text-dorado">Register</a></li>
+    </ul>
+  </nav>
+</div>

@@ -1,4 +1,4 @@
-<div class="sm:block md:flex">
+<div class="sm:block md:flex flex-wrap">
   @for(boardgame of boardgames(); track boardgame.id){
     <app-bg-item [boardgame]="boardgame" (bookedChange)="saveBooked($event)"/>
   } @empty {
