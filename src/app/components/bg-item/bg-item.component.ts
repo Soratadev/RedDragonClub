@@ -19,7 +19,7 @@ export class BgItemComponent {
   get boardgameAttributes() {
     const bg = this.boardgame();
     return [
-      { key: 'title', label: 'Title', value: bg.Name },
+      { key: 'name', label: 'Name', value: bg.Name },
       { key: 'designer', label: 'Designer', value: bg.Designer },
       { key: 'players', label: 'Players', value: bg.Players },
       { key: 'playing-time', label: 'Playing time', value: bg.Playing_time },

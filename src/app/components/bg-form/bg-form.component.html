@@ -1,4 +1,4 @@
-<div class="w-64">
+<div class="w-72">
   <div class="rounded bg-yellow-50 border border-gray-950">
     <h4 class="bg-red-500 text-white text-center"> {{ message }}</h4>
     <form action="" [formGroup]="bgForm()" (ngSubmit)="addBg()">
@@ -70,8 +70,11 @@
           <textarea id="description" name="description" placeholder="Description" formControlName="Description" class="border border-gray-950"></textarea>
         </div>
         <div class="flex justify-center">
-          <button [ngClass]="{'disabled': bgForm().invalid, 'bg-green-200 hover:bg-green-400': bgForm().valid}"
-                  class="rounded my-4 p-2 border-2 border-gray-950 bg-green-200 hover:bg-green-400 font-bold">{{ textButton() }}
+          <button type="submit"
+                  [disabled]="bgForm().invalid"
+                  [ngClass]="{'opacity-50 cursor-not-allowed': bgForm().invalid,
+                              'bg-green-200 hover:bg-green-400': bgForm().valid}"
+                  class="rounded my-4 p-2 border-2 border-gray-950 font-bold">{{ textButton() }}
           </button>
         </div>
       </div>

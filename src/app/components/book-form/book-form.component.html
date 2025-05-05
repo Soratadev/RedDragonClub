@@ -1,0 +1,56 @@
+<div class="w-72">
+  <div class="rounded bg-yellow-50 border border-gray-950">
+    <h4 class="bg-red-500 text-white text-center"> {{ message }}</h4>
+    <form action="" [formGroup]="bookForm()" (ngSubmit)="addBooking()">
+      <div id="row" class="m-1 p-1">
+        <img [src]="bg().Cover" [alt]="bg().Name" class="mx-auto rounded-2xl border border-gray-950 2xl:h-52 xl:h-48 lg:h-40 md:h-32 sm:h-24"/>
+        <div class="input-group">
+          <p><label for="name" class="font-bold">Name: </label></p>
+          <input type="text" id="name" readonly formControlName="Name" class="border border-gray-950 w-full bg-gray-100">
+        </div>
+        <div class="input-group">
+          <p><label for="designer" class="font-bold">Designer: </label></p>
+          <input type="text" id="designer" readonly placeholder=" Designer" formControlName="Designer" class="border border-gray-950 w-full bg-gray-100">
+        </div>
+        <div class="input-group">
+          <p><label for="players" class="font-bold">Players: </label></p>
+          <input type="text" id="players" readonly placeholder=" Players" formControlName="Players" class="border border-gray-950 bg-gray-100">
+        </div>
+        <div class="input-group">
+          <p><label for="playing_time" class="font-bold">Playing time : </label></p>
+          <input type="text" id="playing_time" readonly placeholder=" Playing time" formControlName="Playing_time" class="border border-gray-950 bg-gray-100">
+        </div>
+        <div class="input-group">
+          <p><label for="category" class="font-bold">Category: </label></p>
+          <input type="text" id="category" readonly placeholder=" Category" formControlName="Category" class="border border-gray-950 w-full bg-gray-100">
+        </div>
+        <div class="input-group">
+          <p><label for="loanDate" class="font-bold">Loan Date: </label></p>
+          <input type="date" id="loanDate" [min]="getCurrentDate()" formControlName="loanDate" class="border border-gray-950">
+          @if (bookForm().get('loanDate')?.errors?.['required'] && bookForm().get('loanDate')?.touched) {
+            <div class="text-red-500 text-sm">Date is required</div>
+          }
+          <select id="loanTime" name="loanTime" formControlName="loanTime" class="border border-gray-950 ml-2">
+            <option value="10:00-12:00">10:00-12:00</option>
+            <option value="12:00-14:00">12:00-14:00</option>
+            <option value="17:00-19:00">17:00-19:00</option>
+            <option value="19:00-21:00">19:00-21:00</option>
+          </select>
+          @if (bookForm().get('loanTime')?.errors?.['required'] && bookForm().get('loanTime')?.touched) {
+            <div class="text-red-500 text-sm">Time slot is required</div>
+          }
+        </div>
+        <div class="flex justify-center">
+          <button type="submit"
+                  [disabled]="bookForm().invalid"
+                  [ngClass]="{'opacity-50 cursor-not-allowed': bookForm().invalid,
+                              'bg-green-200 hover:bg-green-400': bookForm().valid}"
+                  class="rounded my-4 p-2 border-2 border-gray-950 font-bold">Send Booking
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

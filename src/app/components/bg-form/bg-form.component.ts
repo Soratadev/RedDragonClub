@@ -35,6 +35,7 @@ export class BgFormComponent {
     })
   );
 
+
   addBg() {
     if(this.bgForm().invalid) {
       this.message = 'Please fill in all required fields.';

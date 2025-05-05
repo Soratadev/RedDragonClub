@@ -15,7 +15,8 @@ export const routes: Routes = [
         path: 'new', loadComponent: () => import('./pages/bg/bg-new/bg-new.component').then(c => c.BgNewComponent)
       },
       {
-        path: ':id', loadComponent: () => import('./pages/bg/bg-details/bg-details.component').then(c => c.BgDetailsComponent)
+        path: 'book/:id', loadComponent: () => import('./pages/bg/bg-booking/bg-booking.component').then(c => c.BgBookingComponent),
+        resolve: { bg: bgIdResolver },
       },
       {
         path: 'update/:id', loadComponent: () => import('./pages/bg/bg-update/bg-update.component').then(c => c.BgUpdateComponent),

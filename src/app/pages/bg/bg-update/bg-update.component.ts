@@ -2,7 +2,6 @@ import {Component, inject} from '@angular/core';
 import {BgFormComponent} from '../../../components/bg-form/bg-form.component';
 import {BoardGame} from '../../../shared/interfaces/boardgame.interface';
 import {ActivatedRoute, Router} from '@angular/router';
-import {bgIdResolver} from '../../../shared/resolvers/bgId.resolver';
 import {BoardgameService} from '../../../shared/services/boardgame.service';
 
 @Component({
@@ -11,7 +10,7 @@ import {BoardgameService} from '../../../shared/services/boardgame.service';
   imports: [BgFormComponent],
   template:`
     <div class="flex flex-col p-12">
-        <h2 class="rounded bg-blue-400 p-2 w-64 border border-gray-950 text-center font-bold">MODIFY BOARDGAME</h2>
+        <h2 class="rounded bg-blue-300 p-2 w-72 border border-gray-950 text-center font-bold">MODIFY BOARD GAME</h2>
         <app-bg-form [bg]="bg" (sendBG)="updateBG($event)" />
     </div>`,
 })

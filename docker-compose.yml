@@ -1,0 +1,6 @@
+services:
+  fronted:
+    build: './'
+    container_name: "reddragon_angular"
+    ports:
+      - "4200:4200"
