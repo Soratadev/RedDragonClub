@@ -1,13 +1,18 @@
 export interface BoardGame {
   id: number;
-  Name: string;
-  Designer: string;
-  Players: string;
-  Playing_time: string;
-  Category: string[];
-  Complexity: number;
-  Age: string;
-  Cover: string;
-  Description: string;
+  name: string;
+  designer: string;
+  players: string;
+  playingTime: string;
+  categories: Category[];
+  complexity: number;
+  age: string;
+  cover: string;
+  description: string;
   Booked: boolean;
+}
+
+export interface Category {
+  id: number;
+  name: string;
 }

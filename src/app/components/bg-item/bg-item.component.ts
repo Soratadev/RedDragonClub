@@ -18,15 +18,21 @@ export class BgItemComponent {
 
   get boardgameAttributes() {
     const bg = this.boardgame();
+    let categories = "";
+    bg.categories.forEach((bg)=>{
+      categories+=bg.name+", ";
+    });
+    categories=categories.slice(0, -2);
+
     return [
-      { key: 'name', label: 'Name', value: bg.Name },
-      { key: 'designer', label: 'Designer', value: bg.Designer },
-      { key: 'players', label: 'Players', value: bg.Players },
-      { key: 'playing-time', label: 'Playing time', value: bg.Playing_time },
-      { key: 'category', label: 'Category', value: bg.Category },
-      { key: 'complexity', label: 'Complexity (out of 5)', value: bg.Complexity },
-      { key: 'age', label: 'Age', value: bg.Age },
-      { key: 'description', label: 'Description', value: bg.Description }
+      { key: 'name', label: 'Name', value: bg.name },
+      { key: 'designer', label: 'Designer', value: bg.designer },
+      { key: 'players', label: 'Players', value: bg.players },
+      { key: 'playing-time', label: 'Playing time', value: bg.playingTime },
+      { key: 'category', label: 'Category', value: categories },
+      { key: 'complexity', label: 'Complexity (out of 5)', value: bg.complexity },
+      { key: 'age', label: 'Age', value: bg.age },
+      { key: 'description', label: 'Description', value: bg.description }
     ];
   }
 

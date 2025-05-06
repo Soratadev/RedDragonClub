@@ -3,7 +3,7 @@
     <h4 class="bg-red-500 text-white text-center"> {{ message }}</h4>
     <form action="" [formGroup]="bookForm()" (ngSubmit)="addBooking()">
       <div id="row" class="m-1 p-1">
-        <img [src]="bg().Cover" [alt]="bg().Name" class="mx-auto rounded-2xl border border-gray-950 2xl:h-52 xl:h-48 lg:h-40 md:h-32 sm:h-24"/>
+        <img [src]="bg().cover" [alt]="bg().name" class="mx-auto rounded-2xl border border-gray-950 2xl:h-52 xl:h-48 lg:h-40 md:h-32 sm:h-24"/>
         <div class="input-group">
           <p><label for="name" class="font-bold">Name: </label></p>
           <input type="text" id="name" readonly formControlName="Name" class="border border-gray-950 w-full bg-gray-100">

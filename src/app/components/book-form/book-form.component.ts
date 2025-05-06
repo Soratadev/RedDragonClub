@@ -21,11 +21,11 @@ export class BookFormComponent {
   message = '';
 
   bookForm: Signal<FormGroup> = computed(() => this.#formBuilder.group({
-      Name: [{value: this.bg().Name, disabled: true}],
-      Designer: [{value: this.bg().Designer, disabled: true}],
-      Players: [{value: this.bg().Players, disabled: true}],
-      Playing_time: [{value: this.bg().Playing_time, disabled: true}],
-      Category: [{value: this.bg().Category, disabled: true}],
+      Name: [{value: this.bg().name, disabled: true}],
+      Designer: [{value: this.bg().designer, disabled: true}],
+      Players: [{value: this.bg().players, disabled: true}],
+      Playing_time: [{value: this.bg().playingTime, disabled: true}],
+      Category: [{value: this.bg().categories, disabled: true}],
       loanDate: ['', Validators.required],
       loanTime: ['', Validators.required],
   }));
@@ -41,7 +41,7 @@ export class BookFormComponent {
       const Book: Booking = {
         id: Math.floor(Math.random() * 100) + 1,
         idBoardgame: this.bg().id,
-        bgName: this.bg().Name,
+        bgName: this.bg().name,
         idUser: 1,
         loanDate: `${this.bookForm().value.loanDate}`,
         loanTime: `${this.bookForm().value.loanTime}`

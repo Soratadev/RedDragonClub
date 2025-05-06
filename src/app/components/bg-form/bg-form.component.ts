@@ -22,15 +22,15 @@ export class BgFormComponent {
 
   bgForm: Signal<FormGroup> = computed(() => this.#formBuilder.group({
 
-    Name: [this.bg().Name, Validators.required],
-    Designer: [this.bg().Designer, Validators.required],
-    Players: [this.bg().Players, Validators.required],
-    Playing_time: [this.bg().Playing_time, Validators.required],
-    Category: [this.bg().Category, Validators.required],
-    Complexity: [this.bg().Complexity, Validators.required],
-    Age: [this.bg().Age, Validators.required],
-    Cover: [this.bg().Cover, Validators.required],
-    Description: [this.bg().Description, ],
+    Name: [this.bg().name, Validators.required],
+    Designer: [this.bg().designer, Validators.required],
+    Players: [this.bg().players, Validators.required],
+    Playing_time: [this.bg().playingTime, Validators.required],
+    Category: [this.bg().categories, Validators.required],
+    Complexity: [this.bg().complexity, Validators.required],
+    Age: [this.bg().age, Validators.required],
+    Cover: [this.bg().cover, Validators.required],
+    Description: [this.bg().description],
     Booked: false
     })
   );

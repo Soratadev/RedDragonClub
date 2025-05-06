@@ -1,18 +1,20 @@
-<div class="rounded inline-block border border-gray-950 m-1 bg-gradient-to-bl from-gray-400 via-zinc-300 to-slate-400 2xl:w-64 xl:w-56 lg:w-48 md:w-40 sm:w-32">
+<div class="mx-2 my-2 rounded inline-block border border-gray-950 m-1 bg-gradient-to-bl from-gray-400 via-zinc-300 to-slate-400 2xl:w-72 xl:w-56 lg:w-48 md:w-40 sm:w-32">
   <div class=" my-4">
-    <img [src]="boardgame().Cover" alt="bg-item" class="mx-auto rounded-2xl border border-gray-950 2xl:h-52 xl:h-48 lg:h-40 md:h-32 sm:h-24"/>
+    <img [src]="boardgame().cover" [alt]="boardgame().name" class="mx-auto rounded-2xl border border-gray-950 2xl:h-52 xl:h-48 lg:h-40 md:h-32 sm:h-24"/>
     <!--@if (this.boardgame().Booked) {
       <div class="bg-red-400 text-white text-center font-bold">Booked</div>
     }-->
     <div *ngIf="boardgame().Booked" class="bg-red-400 text-white text-center font-bold">Booked</div>
   </div>
-  <div class="mx-2">
-    <div *ngFor="let attribute of boardgameAttributes">
+  <hr>
+  <div class="mx-2 mt-2">
+    <div class="h-12" *ngFor="let attribute of boardgameAttributes">
       <label [for]="'bg-item-' + attribute.key" class="font-bold">{{ attribute.label }}: </label>
-      <span [id]="'bg-item-' + attribute.key" [class]="'bg-item-' + attribute.key">{{ attribute.value }}</span><br/>
+      <span [id]="'bg-item-' + attribute.key" [class]="'bg-item-' + attribute.key">{{ attribute.value }}</span>
     </div>
+    <br>
     <hr/>
-    <div class="flex justify-around">
+    <div class="flex justify-around ">
       <!--<button class="rounded-full my-4 p-2 border-2 border-gray-950 bg-blue-200 hover:bg-blue-400 font-bold" [routerLink]="['/bg', boardgame().id]">Details</button>-->
       <button class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-blue-200 hover:bg-blue-400 font-bold" [routerLink]="['/bg', 'update', boardgame().id]">Edit</button>
       <button
