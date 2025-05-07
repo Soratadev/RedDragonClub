@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {BgFormComponent} from '../../../components/bg-form/bg-form.component';
 import {BoardGame} from '../../../shared/interfaces/boardgame.interface';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,12 +14,23 @@ import {BoardgameService} from '../../../shared/services/boardgame.service';
         <app-bg-form [bg]="bg" (sendBG)="updateBG($event)" />
     </div>`,
 })
-export class BgUpdateComponent {
+export class BgUpdateComponent implements OnInit{
   readonly #router = inject(Router);
   readonly #activatedRouter = inject(ActivatedRoute);
   readonly #bgService = inject(BoardgameService);
 
+  boardGames: BoardGame[] = [];
   bg: BoardGame = this.#activatedRouter.snapshot.data['bg'];
+
+  ngOnInit(): void {
+    this.callApiService();
+    console.log('Updating boardgame:', this.bg);
+  }
+  private callApiService() {
+    this.#bgService.getBoardgame().subscribe((data) => {
+      this.boardGames = data;
+    });
+  }
 
   updateBG(bg: BoardGame) {
     console.log('Updating boardgame:', bg);

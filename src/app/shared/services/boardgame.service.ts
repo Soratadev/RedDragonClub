@@ -11,9 +11,7 @@ export class BoardgameService {
   public boardgames: BoardGame[] = []
   constructor(private http: HttpClient)
   {}
-  getBoardgame(): Observable<any> {
-    return this.http.get<any>(this.apiUrl+'boardgame');
-  }
+
 
   readonly default_bg: BoardGame = {
     id: Math.floor(Math.random() * 100) + 25,
@@ -42,11 +40,13 @@ export class BoardgameService {
       this.boardgames.splice(index, 1);
     }
   }
-  findAll(): BoardGame[] {
-    return this.boardgames;
+  getBoardgame(): Observable<BoardGame[]> {
+    return this.http.get<any>(this.apiUrl+'boardgame');
   }
-  findById(id: number): BoardGame {
-    return this.boardgames.find(bg => bg.id === id)!;
+  getBoardgameById(id: number): Observable<BoardGame> {
+    return this.http.get<any>(this.apiUrl+'boardgame/'+id+'');
+
+    //return this.boardgames.find(bg => bg.id === id)!;
   }
   isDefaultBg(bg: BoardGame): boolean {
     return bg.id === this.default_bg.id;

@@ -4,7 +4,7 @@ import {inject} from '@angular/core';
 import {BoardgameService} from '../services/boardgame.service';
 
 export const bgIdResolver: ResolveFn<BoardGame> = (route: ActivatedRouteSnapshot) =>
-  inject(BoardgameService).findById(parseInt(route.paramMap.get('id')!, 10));
+  inject(BoardgameService).getBoardgameById(parseInt(route.paramMap.get('id')!, 10));
   /* Estas tres líneas son equivalentes:
   const bgService = inject(BoardgameService);
   bgService.findById(parseInt(route.paramMap.get('id')!, 10));

@@ -1,9 +1,10 @@
-import {Component, computed, inject, input, output, Signal} from '@angular/core';
+import {Component, computed, inject, input, OnInit, output, Signal} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {BoardGame} from '../../shared/interfaces/boardgame.interface';
+import {BoardGame, Category} from '../../shared/interfaces/boardgame.interface';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
 import {BoardgameService} from '../../shared/services/boardgame.service';
+import {CategoryService} from '../../shared/services/category.service';
 
 @Component({
   selector: 'app-bg-form',
@@ -11,14 +12,30 @@ import {BoardgameService} from '../../shared/services/boardgame.service';
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './bg-form.component.html',
 })
-export class BgFormComponent {
+export class BgFormComponent implements OnInit {
   readonly #router = inject(Router);
   readonly #bgService = inject(BoardgameService);
+  readonly #formBuilder = inject(FormBuilder);
+  readonly #categoryService = inject(CategoryService);
+
+  message = '';
+  categories: Category[] = [];
   bg = input<BoardGame>(this.#bgService.default_bg);
   addBG = output<BoardGame>({alias: 'sendBG'});
-  readonly #formBuilder = inject(FormBuilder);
-  message = '';
-  textButton = computed(() => this.#bgService.isDefaultBg(this.bg()) ? 'Add new Game' : 'Update Game');
+  textButton = computed(() =>
+    this.#bgService.isDefaultBg(this.bg()) ? 'Add new Game' : 'Update Game');
+
+  ngOnInit(): void {
+    this.getCategories();
+    if (this.bg().categories) {
+      this.selectedCategories = [...this.bg().categories];
+    }
+  }
+  private getCategories(): void {
+    this.#categoryService.getCategories().subscribe((data) => {
+      this.categories = data;
+    });
+  }
 
   bgForm: Signal<FormGroup> = computed(() => this.#formBuilder.group({
 
@@ -35,14 +52,46 @@ export class BgFormComponent {
     })
   );
 
+  selectedCategories: Category[] = [];
+
+  onCategorySelect(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const categoryId = parseInt(select.value);
+    const selectedCategory = this.categories.find(cat => cat.id === categoryId);
+
+    if (selectedCategory && !this.selectedCategories.some(cat => cat.id === categoryId)) {
+      this.selectedCategories.push(selectedCategory);
+      this.bgForm().patchValue({
+        Category: this.selectedCategories
+      });
+    }
+    // Reset the select
+    select.value = '';
+  }
+
+  removeCategory(category: Category): void {
+    this.selectedCategories = this.selectedCategories.filter(cat => cat.id !== category.id);
+    this.bgForm().patchValue({
+      Category: this.selectedCategories
+    });
+  }
+
+  isOptionVisible(category: Category): boolean {
+    return !this.selectedCategories.some(cat => cat.id === category.id);
+  }
 
   addBg() {
     if(this.bgForm().invalid) {
       this.message = 'Please fill in all required fields.';
   } else {
+      const formValue = this.bgForm().value;
+      const selectedCategories = Array.isArray(formValue.Category) ?
+        formValue.Category : [formValue.Category];
+
       const Bg: BoardGame = {
         id: this.bg().id,
-        ...this.bgForm().value,
+        ...formValue,
+        categories: selectedCategories
       };
       this.addBG.emit(Bg);
       this.#router.navigate(['/bg/catalog']);

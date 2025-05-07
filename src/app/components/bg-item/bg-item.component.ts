@@ -35,10 +35,6 @@ export class BgItemComponent {
       { key: 'description', label: 'Description', value: bg.description }
     ];
   }
-
-  /*toggleBooking() {
-    this.boardgame().Booked = !this.boardgame().Booked;
-  }*/
   toggleBooking() {
     this.bookedChange.emit({boardgame: this.boardgame(), Booked: !this.boardgame().Booked});
   }

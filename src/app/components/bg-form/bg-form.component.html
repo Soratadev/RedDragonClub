@@ -24,8 +24,45 @@
         </div>
         <div class="input-group">
           <p><label for="category" class="font-bold">Category: </label></p>
-          <input type="text" id="category" name="category" placeholder=" Category" formControlName="Category" class="border border-gray-950">
+          <!--<input type="text" id="category" name="category" placeholder=" Category" formControlName="Category" class="border border-gray-950">-->
+          <select
+            id="category"
+            name="category"
+            (change)="onCategorySelect($event)"
+            class="border border-gray-950 p-1 truncate">
+            <option value="">Select one or more categories</option>
+            @for(category of categories; track category.id) {
+              <option [value]="category.id"
+                      [style.display]="isOptionVisible(category) ? 'block' : 'none'">
+                {{category.name}}
+              </option>
+            }
+          </select>
+
+          <!-- Container for the selected categories-->
+          <div class="flex flex-wrap gap-2 mt-2 mb-1">
+            @for(category of selectedCategories; track category.id) {
+              <div class="flex items-center bg-blue-100 rounded-full px-3 py-1">
+                <span class="text-sm">{{category.name}}</span>
+                <button
+                  type="button"
+                  class="ml-2 text-red-500 hover:text-red-700"
+                  (click)="removeCategory(category)">
+                  ×
+                </button>
+              </div>
+            }
+          </div>
+
+          <!-- Validated message if the user didn't select any category -->
+          @if(bgForm().get('Category')?.touched && bgForm().get('Category')?.invalid) {
+            <div class="text-red-500 text-sm mt-1">You must select at least one category</div>
+          }
+          @if(categories.length === 0) {
+            <div class="text-yellow-600 text-sm mt-1">Loading categories...</div>
+          }
         </div>
+
         <div class="input-group">
           <p><label for="complexity" class="font-bold">Complexity: </label></p>
           <input type="text" id="complexity" name="complexity" placeholder=" Complexity" formControlName="Complexity" class="border border-gray-950">
