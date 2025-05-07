@@ -2,6 +2,6 @@
   @for(boardgame of boardgames(); track boardgame.id){
     <app-bg-item [boardgame]="boardgame" (bookedChange)="saveBooked($event)"/>
   } @empty {
-    <div class="text-center text-red-500 text-4xl font-bold">No boardgames found</div>
+    <!--<div class="text-center text-red-500 text-4xl font-bold">Loading board games</div>-->
   }
 </div>

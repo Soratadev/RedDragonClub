@@ -84,14 +84,23 @@ export class BgFormComponent implements OnInit {
     if(this.bgForm().invalid) {
       this.message = 'Please fill in all required fields.';
   } else {
-      const formValue = this.bgForm().value;
+      const formValue = this.bgForm().getRawValue();
       const selectedCategories = Array.isArray(formValue.Category) ?
         formValue.Category : [formValue.Category];
 
       const Bg: BoardGame = {
         id: this.bg().id,
-        ...formValue,
-        categories: selectedCategories
+        name: formValue.Name,
+        designer: formValue.Designer,
+        players: formValue.Players,
+        playingTime: formValue.Playing_time,
+        categories: selectedCategories,
+        complexity: formValue.Complexity,
+        age: formValue.Age,
+        cover: formValue.Cover,
+        description: formValue.Description,
+        Booked: formValue.Booked || false
+
       };
       this.addBG.emit(Bg);
       this.#router.navigate(['/bg/catalog']);
