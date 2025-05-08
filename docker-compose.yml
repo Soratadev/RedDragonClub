@@ -1,6 +1,9 @@
 services:
   fronted:
     build: './'
+    volumes:
+        - ./:/app
+        - /app/node_modules
     container_name: "reddragon_angular"
     ports:
       - "4200:4200"

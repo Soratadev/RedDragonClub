@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   standalone: true,
   imports: [BgFormComponent],
   template: `
-    <div class="p-12">
+    <div class="p-8">
       <h2 class="rounded bg-green-300 p-2 w-72 border border-gray-950 text-center font-bold">
         ADD A NEW BOARD GAME
       </h2>
