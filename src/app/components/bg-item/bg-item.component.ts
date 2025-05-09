@@ -13,8 +13,15 @@ import {RouterLink} from '@angular/router';
 export class BgItemComponent {
   boardgame = input.required<BoardGame>();
   bookedChange = output<bookedChange>();
-
+  deleteBg = output<number>();
   isBooked = computed(() => this.boardgame().Booked);
+
+  onDelete(): void {
+    if (confirm(`Are you sure you want to delete "${this.boardgame().name}"?`)) {
+      this.deleteBg.emit(this.boardgame().id);
+    }
+
+  }
 
   get boardgameAttributes() {
     const bg = this.boardgame();

@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, output, input} from '@angular/core';
 import {BgItemComponent} from '../bg-item/bg-item.component';
 import {BoardGame} from '../../shared/interfaces/boardgame.interface';
 import {bookedChange} from '../../shared/interfaces/bookedChange.interface';
@@ -11,6 +11,11 @@ import {bookedChange} from '../../shared/interfaces/bookedChange.interface';
 })
 export class BgListComponent {
   boardgames = input.required<BoardGame[]>();
+  deleteBgFromList = output<number>();
+
+  onDeleteBg(id: number): void {
+    this.deleteBgFromList.emit(id);
+  }
 
   saveBooked({boardgame, Booked}: bookedChange): void {
     boardgame.Booked = Booked;

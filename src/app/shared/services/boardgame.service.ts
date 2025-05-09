@@ -77,7 +77,7 @@ export class BoardgameService {
         })
       )
   }
-  // Refresh the boardgames list
+
   refreshBoardGames(): Observable<BoardGame[]> {
     return this.#http.get<BoardGame[]>(this.apiUrl+'boardgame').pipe(
         tap(bg => {
@@ -86,11 +86,12 @@ export class BoardgameService {
       );
   }
 
-  delete(_bg: BoardGame){
-    const index = this.boardgames.findIndex((bg) => bg.id === _bg.id);
-    if (index !== -1) {
-      this.boardgames.splice(index, 1);
-    }
+  delete(id: number): Observable<BoardGame>{
+    return this.#http.delete<BoardGame>(this.apiUrl+'boardgame/delete/'+id+'').pipe(
+      tap(() => {
+        this.refreshBoardGames().subscribe();
+      })
+    )
   }
   getBoardgame(): Observable<BoardGame[]> {
     return this.#http.get<BoardGame[]>(this.apiUrl+'boardgame').pipe(
