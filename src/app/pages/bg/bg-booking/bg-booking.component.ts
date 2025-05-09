@@ -9,11 +9,7 @@ import {Booking} from '../../../shared/interfaces/booking.interface';
   selector: 'app-bg-booking',
   imports: [BookFormComponent],
   standalone: true,
-  template:
-    `<div class="flex flex-col p-12">
-        <h2 class="rounded bg-orange-300 p-2 w-72 border border-gray-950 text-center font-bold">BOOKING A BOARD GAME</h2>
-        <app-book-form [bg]="bg" (sendBooking)="addBook($event)"/>
-    </div>`,
+  templateUrl: './bg-booking.component.html',
 })
 export class BgBookingComponent {
   readonly #router = inject(Router);

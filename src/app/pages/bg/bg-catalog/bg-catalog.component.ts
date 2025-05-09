@@ -8,13 +8,7 @@ import {Subscription} from 'rxjs';
   selector: 'app-bg-catalog',
   standalone: true,
   imports: [BgListComponent],
-  template: `
-    <div class="bg-gradient-to-bl from-yellow-50 via-orange-100 to-yellow-100 ">
-      <app-bg-list [boardgames]="boardGames" />
-      @if(isLoading) {
-        <div class="text-center py-4">Loading board games...</div>
-      }
-    </div>`,
+  templateUrl: './bg-catalog.component.html',
 })
 export class BgCatalogComponent implements OnInit, OnDestroy{
   boardGames: BoardGame[] = [];

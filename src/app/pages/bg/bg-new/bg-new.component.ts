@@ -8,26 +8,7 @@ import {Router} from '@angular/router';
   selector: 'app-bg-new',
   standalone: true,
   imports: [BgFormComponent],
-  template: `
-    <div class="p-12">
-      <h2 class="rounded bg-green-300 p-2 w-72 border border-gray-950 text-center font-bold">
-        ADD A NEW BOARD GAME
-      </h2>
-      <app-bg-form (sendBG)="addBG($event)"/>
-      @if(isLoading) {
-        <div class="text-center py-4">Creating new board game...</div>
-      }
-      @if(error) {
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
-          {{error}}
-        </div>
-      }
-      @if(success) {
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4">
-          {{success}}
-        </div>
-      }
-    </div>`,
+  templateUrl: 'bg-new.component.html',
 })
 export class BgNewComponent {
   readonly #boardgameService = inject(BoardgameService);

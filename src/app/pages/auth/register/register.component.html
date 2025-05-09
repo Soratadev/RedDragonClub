@@ -1,1 +1,16 @@
-<p>register works!</p>
+<div class="flex min-h-full border border-black w-full">
+  <aside class="w-[2%] bg-granate"></aside>
+  <main class="w-[96%] bg-dorado bg-opacity-75 p-8 font-medium font-serif w-[100%]">
+    <div class="max-w-md mx-auto">
+      <h2 class="text-3xl text-center mb-8">Register at Red Dragon Club</h2>
+      @if (message) {
+        <div class="bg-red-500 text-white text-center p-2 rounded mb-4">
+          {{ message }}
+        </div>
+      }
+      <app-register-form/>
+    </div>
+  </main>
+  <div class="w-[2%] bg-granate"></div>
+</div>
+

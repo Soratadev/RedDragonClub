@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from './shared/components/header/header.component';
 import {FooterComponent} from './shared/components/footer/footer.component';
@@ -8,10 +8,12 @@ import {FooterComponent} from './shared/components/footer/footer.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template:`
-  <div class="grid grid-rows-[auto_1fr_auto] min-h-screen w-full">
-    <app-header class="col-span-2" />
-    <router-outlet />
-    <app-footer class="col-span-2" />
+  <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
+    <app-header/>
+    <main class="w-full">
+      <router-outlet/>
+    </main>
+    <app-footer/>
   </div>`,
 })
 export class AppComponent {

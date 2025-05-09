@@ -9,24 +9,7 @@ import {finalize} from 'rxjs';
   selector: 'app-bg-update',
   standalone: true,
   imports: [BgFormComponent],
-  template:`
-    <div class="flex flex-col p-12">
-        <h2 class="rounded bg-blue-300 p-2 w-72 border border-gray-950 text-center font-bold">MODIFY BOARD GAME</h2>
-      @if(isLoading) {
-        <div class="text-center py-4">Updating...</div>
-      }
-      <app-bg-form [bg]="bg" (sendBG)="updateBG($event)" />
-      @if(error) {
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
-          {{error}}
-        </div>
-      }
-      @if(success) {
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4">
-          {{success}}
-        </div>
-      }
-    </div>`,
+  templateUrl: 'bg-update.component.html',
 })
 export class BgUpdateComponent implements OnInit {
   readonly #router = inject(Router);

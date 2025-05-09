@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import {RegisterFormComponent} from '../../../components/register-form/register-form.component';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  standalone: true,
+  imports: [
+    RegisterFormComponent
+  ],
   templateUrl: './register.component.html',
-  styles: ``
 })
 export class RegisterComponent {
+  message: string = '';
 
 }

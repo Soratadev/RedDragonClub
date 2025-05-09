@@ -1,13 +1,17 @@
 import { Component} from '@angular/core';
-import {BgItemComponent} from '../../../components/bg-item/bg-item.component';
+import {LoginFormComponent} from '../../../components/login-form/login-form.component';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  standalone: true,
+    imports: [
+        LoginFormComponent
+    ],
   templateUrl: './login.component.html',
   styles: ``
 })
 export class LoginComponent{
+  message: string = '';
 
 
 

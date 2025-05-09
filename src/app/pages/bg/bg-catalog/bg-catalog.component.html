@@ -1,0 +1,12 @@
+<div class="flex min-h-full border border-black">
+  <aside class="w-[2%] bg-granate"></aside>
+  <main class="w-[96%] bg-dorado bg-opacity-75 p-2 font-medium font-serif">
+    <div>
+      <app-bg-list [boardgames]="boardGames" />
+      @if(isLoading) {
+        <div class="text-center py-4">Loading board games...</div>
+      }
+    </div>
+  </main>
+  <div class="w-[2%] bg-granate p-2 text-white"></div>
+</div>

@@ -1,5 +1,5 @@
 <div class="w-72">
-  <div class="rounded bg-yellow-50 border border-gray-950">
+  <div class="rounded bg-yellow-100 opacity-75 border border-gray-950">
     <h4 class="bg-red-500 text-white text-center"> {{ message }}</h4>
     <form action="" [formGroup]="bgForm()" (ngSubmit)="addBg()">
       <div id="row" class="m-1 p-1">
@@ -67,7 +67,7 @@
           <p><label for="complexity" class="font-bold">Complexity: </label></p>
           <input type="text" id="complexity" name="complexity" placeholder=" Complexity" formControlName="Complexity" class="border border-gray-950">
         </div>
-        <div class="input-group"><img src="../../../assets/img/azul.jpeg" alt="azul" height="320" width="263"/>
+        <div class="input-group">
           <p><label for="age" class="font-bold">Age: </label></p>
           <input type="text" id="age" name="age" placeholder=" Age" formControlName="Age" class="border border-gray-950">
         </div>
@@ -75,7 +75,7 @@
           <p><label for="cover" class="font-bold">Cover: </label></p>
           <select id="cover" name="cover" formControlName="Cover" class="border border-gray-950">
             <option value="" disabled selected></option>
-            <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/7wonders.jpeg?raw=true">7 Wonders</option>
+            <option value="assets/img/7wonders.jpeg">7 Wonders</option>
             <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/arkham-horror.jpeg?raw=true">Arkham Horror</option>
             <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/azul.jpeg?raw=true">Azul</option>
             <option value="https://github.com/Soratadev/RedDragonClub/blob/main/src/assets/img/blood-rage.jpeg?raw=true">Blood Rage</option>

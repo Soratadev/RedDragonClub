@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm" (ngSubmit)="goSubmit()"
+      class="bg-yellow-100 opacity-75 rounded p-6 border border-gray-950">
+
+  <!-- Email -->
+  <div class="mb-4">
+    <label for="email" class="block font-bold mb-2">Email:</label>
+    <input type="email" id="email" formControlName="email"
+           class="w-full border border-gray-950 p-2 rounded"
+           placeholder="Enter your email">
+    @if (loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched) {
+      <p class="text-red-500 text-sm mt-1">Email is required</p>
+    }
+    @if (loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched) {
+      <p class="text-red-500 text-sm mt-1">Please enter a valid email</p>
+    }
+  </div>
+
+  <!-- Password -->
+  <div class="mb-6">
+    <label for="password" class="block font-bold mb-2">Password:</label>
+    <input type="password" id="password" formControlName="password"
+           class="w-full border border-gray-950 p-2 rounded"
+           placeholder="Enter your password">
+    @if (loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched) {
+      <p class="text-red-500 text-sm mt-1">Password is required</p>
+    }
+    @if (loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched) {
+      <p class="text-red-500 text-sm mt-1">Password must be at least 6 characters</p>
+    }
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex flex-col gap-4">
+    <button type="submit"
+            [disabled]="loginForm.invalid"
+            [ngClass]="{'opacity-50 cursor-not-allowed': loginForm.invalid,
+                       'bg-green-200 hover:bg-green-400': loginForm.valid}"
+            class="w-full rounded p-2 border-2 border-gray-950 font-bold">
+      Sign In
+    </button>
+
+    <button type="button"
+            (click)="goToResetPassword()"
+            class="w-full bg-blue-200 hover:bg-blue-400 rounded p-2 border-2 border-gray-950 font-bold">
+      Forgot Password?
+    </button>
+  </div>
+</form>
