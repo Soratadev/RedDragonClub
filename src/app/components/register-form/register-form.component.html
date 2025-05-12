@@ -28,10 +28,10 @@
 
   <!-- Birthdate -->
   <div class="mb-4">
-    <label for="birthDate" class="block font-bold mb-2">Birth Date:</label>
-    <input type="date" id="birthDate" formControlName="birthDate"
+    <label for="birthdate" class="block font-bold mb-2">Birth Date:</label>
+    <input type="date" id="birthdate" formControlName="birthdate"
            class="w-full border border-gray-950 p-2 rounded">
-    @if (registerForm.get('birthDate')?.errors?.['required'] && registerForm.get('birthDate')?.touched) {
+    @if (registerForm.get('birthdate')?.errors?.['required'] && registerForm.get('birthdate')?.touched) {
       <p class="text-red-500 text-sm mt-1">Birth date is required</p>
     }
   </div>
@@ -53,7 +53,7 @@
   <!-- Buttons -->
   <div class="flex flex-col gap-4">
     <button type="submit"
-            [disabled]="registerForm.invalid"
+            [disabled]="!registerForm.valid"
             [ngClass]="{'opacity-50 cursor-not-allowed': registerForm.invalid,
                              'bg-green-200 hover:bg-green-400': registerForm.valid}"
             class="w-full rounded p-2 border-2 border-gray-950 font-bold">

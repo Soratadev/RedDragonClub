@@ -1,8 +1,9 @@
-import {Component, computed, input, output} from '@angular/core';
+import {Component, inject, input, OnInit, output} from '@angular/core';
 import { BoardGame } from '../../shared/interfaces/boardgame.interface';
 import { bookedChange } from '../../shared/interfaces/bookedChange.interface';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {UserService} from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-bg-item',
@@ -10,11 +11,25 @@ import {RouterLink} from '@angular/router';
   imports: [CommonModule, RouterLink],
   templateUrl: './bg-item.component.html',
 })
-export class BgItemComponent {
+export class BgItemComponent implements OnInit{
   boardgame = input.required<BoardGame>();
   bookedChange = output<bookedChange>();
   deleteBg = output<number>();
-  isBooked = computed(() => this.boardgame().Booked);
+  //isBooked = computed(() => this.boardgame().Booked);
+  readonly #userService = inject(UserService);
+
+  isLogged = false;
+  isAdmin = false;
+
+  ngOnInit(): void {
+    this.#userService.getLoginStatus$().subscribe(status => {
+      this.isLogged = status;
+    });
+    this.#userService.getUserRole$().subscribe(role => {
+      this.isAdmin = role === 'ROLE_ADMIN';
+    });
+
+  }
 
   onDelete(): void {
     if (confirm(`Are you sure you want to delete "${this.boardgame().name}"?`)) {

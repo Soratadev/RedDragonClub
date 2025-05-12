@@ -40,7 +40,7 @@ export class BoardgameService {
       description: bg.description,
       booked: false
     };
-    return this.#http.post<BoardGame>(this.apiUrl+'boardgame/create', newBoardGame).pipe(
+    return this.#http.post<BoardGame>(this.apiUrl+'api/create', newBoardGame).pipe(
       tap(() => {
         this.refreshBoardGames().subscribe();
       })
@@ -67,19 +67,15 @@ export class BoardgameService {
       Booked: edited_bg.Booked,
     };
 
-    return this.#http.put<BoardGame>(this.apiUrl+'boardgame/edit/'+edited_bg.id+'', updateData).pipe(
+    return this.#http.put<BoardGame>(this.apiUrl+'api/edit/'+edited_bg.id+'', updateData).pipe(
         tap(() =>{
           this.refreshBoardGames().subscribe();
-          /*const index = this.boardgames.findIndex(bg => bg.id === updated_bg.id);
-          if (index !== -1) {
-            this.boardgames[index] = updated_bg;
-          }*/
         })
       )
   }
 
   refreshBoardGames(): Observable<BoardGame[]> {
-    return this.#http.get<BoardGame[]>(this.apiUrl+'boardgame').pipe(
+    return this.#http.get<BoardGame[]>(this.apiUrl+'public/catalog').pipe(
         tap(bg => {
           this.bgSubject.next(bg);
         })
@@ -87,21 +83,21 @@ export class BoardgameService {
   }
 
   delete(id: number): Observable<BoardGame>{
-    return this.#http.delete<BoardGame>(this.apiUrl+'boardgame/delete/'+id+'').pipe(
+    return this.#http.delete<BoardGame>(this.apiUrl+'api/delete/'+id+'').pipe(
       tap(() => {
         this.refreshBoardGames().subscribe();
       })
     )
   }
   getBoardgame(): Observable<BoardGame[]> {
-    return this.#http.get<BoardGame[]>(this.apiUrl+'boardgame').pipe(
+    return this.#http.get<BoardGame[]>(this.apiUrl+'public/catalog').pipe(
       tap(bg => {
           this.bgSubject.next(bg);
       })
     );
   }
   getBoardgameById(id: number): Observable<BoardGame> {
-    return this.#http.get<any>(this.apiUrl+'boardgame/'+id+'');
+    return this.#http.get<any>(this.apiUrl+'api/'+id+'');
 
     //return this.boardgames.find(bg => bg.id === id)!;
   }

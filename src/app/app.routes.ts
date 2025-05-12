@@ -6,11 +6,11 @@ export const routes: Routes = [
     path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
   },
   {
+    path: 'catalog', loadComponent: () => import('./pages/bg/bg-catalog/bg-catalog.component').then(c => c.BgCatalogComponent)
+  },
+  {
     path: 'bg',
     children: [
-      {
-        path: 'catalog', loadComponent: () => import('./pages/bg/bg-catalog/bg-catalog.component').then(c => c.BgCatalogComponent)
-      },
       {
         path: 'new', loadComponent: () => import('./pages/bg/bg-new/bg-new.component').then(c => c.BgNewComponent)
       },
@@ -35,6 +35,10 @@ export const routes: Routes = [
       }
     ]
   },
+  /*{
+    path: 'dashboard', loadComponent: () => import('./pages/auth/dashboard/dashboard.component').then(c => c.DashboardComponent),
+    canActivate: [UserGuard]
+  },*/
   {
     path: '**', redirectTo: 'home', pathMatch: 'full'
   }

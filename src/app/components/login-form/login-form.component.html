@@ -9,7 +9,7 @@
            placeholder="Enter your email">
     @if (loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched) {
       <p class="text-red-500 text-sm mt-1">Email is required</p>
-    }
+      }
     @if (loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched) {
       <p class="text-red-500 text-sm mt-1">Please enter a valid email</p>
     }
