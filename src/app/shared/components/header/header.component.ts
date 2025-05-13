@@ -38,8 +38,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   onButtonClick(): void {
     if (this.isLogged) {
-      // Si está logueado, cerrar sesión
-      this.#userService.logout(); // Elimina token de localStorage
+      // if log in, log out
+      this.#userService.logout(); // delete token in localStorage
       this.#router.navigate(['/home']);
     } else {
       this.#router.navigate(['/auth/login']);
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   onUsernameClick(): void {
-    this.#router.navigate(['/auth/dashboard']); // Redirigir al Dashboard
+    this.#router.navigate(['/auth/dashboard']); // go to Dashboard
   }
 
 }
