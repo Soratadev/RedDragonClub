@@ -36,13 +36,6 @@ export class BgItemComponent implements OnInit{
 
   }
 
-  onDelete(): void {
-    if (confirm(`Are you sure you want to delete "${this.boardgame().name}"?`)) {
-      this.deleteBg.emit(this.boardgame().id);
-    }
-
-  }
-
   get boardgameAttributes() {
     const bg = this.boardgame();
     let categories = "";

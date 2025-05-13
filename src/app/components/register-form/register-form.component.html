@@ -3,12 +3,12 @@
 
   <!-- Name -->
   <div class="mb-4">
-    <label for="name" class="block font-bold mb-2">Name:</label>
-    <input type="text" id="name" formControlName="name"
+    <label for="username" class="block font-bold mb-2">Username:</label>
+    <input type="text" id="username" formControlName="username"
            class="w-full border border-gray-950 p-2 rounded"
-           placeholder="Enter your name">
-    @if (registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched) {
-      <p class="text-red-500 text-sm mt-1">Name is required</p>
+           placeholder="Enter your username">
+    @if (registerForm.get('username')?.errors?.['required'] && registerForm.get('username')?.touched) {
+      <p class="text-red-500 text-sm mt-1">Userame is required</p>
     }
   </div>
 

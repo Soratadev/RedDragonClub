@@ -14,9 +14,9 @@
       <li *ngIf="!isLogged">
         <a [routerLink]="['auth', 'register']" routerLinkActive="text-dorado">Register</a>
       </li>
-      <li *ngIf="isLogged" class="relative inline-block">
+      <li *ngIf="isLogged && isAdmin" class="relative inline-block">
         <button class="cursor-pointer" (click)="toggleDropdown()">
-          {{ username || 'Username'}}
+          {{ username || 'username'}}
         </button>
         <div *ngIf="isDropdownOpen" class="absolute w-28 right-0 mt-2 border border-gray-950 bg-granate z-auto">
           <div

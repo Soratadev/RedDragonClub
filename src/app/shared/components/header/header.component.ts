@@ -71,20 +71,14 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy{
     this.isDropdownOpen = false;
 
     switch (option) {
+      case 'Profiles':
+        this.#router.navigate(['/auth/profiles']);
+        break;
       case 'Add new BG':
         this.#router.navigate(['/bg/new']);
         break;
-      case 'Edit':
-        this.#router.navigate(['/bg/edit']);
-        break;
-      case 'Delete':
-        this.#router.navigate(['/bg/delete']);
-        break;
-      case 'Profile':
-        this.#router.navigate(['/auth/dashboard']);
-        break;
-      case 'Booking':
-        this.#router.navigate(['/bg/book']);
+      case 'MAnage BG':
+        this.#router.navigate(['/auth/manage-bg']);
         break;
       default:
         console.log('Unknown option:', option);

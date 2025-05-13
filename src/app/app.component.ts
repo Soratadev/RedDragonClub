@@ -10,7 +10,7 @@ import {FooterComponent} from './shared/components/footer/footer.component';
   template:`
   <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
     <app-header/>
-    <main class="w-full">
+    <main class="w-full min-h-full">
       <router-outlet/>
     </main>
     <app-footer/>

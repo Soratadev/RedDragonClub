@@ -23,7 +23,7 @@ export class UserService {
       .pipe(
         tap(res => {
           localStorage.setItem('jwt_token', res.token);
-          localStorage.setItem('name', res.name);
+          localStorage.setItem('username', res.username);
           localStorage.setItem('role', res.role);
           this.refreshStateFromLocalStorage();
         })
@@ -49,7 +49,7 @@ export class UserService {
   }
 
   getStoredUsername(): string | null {
-    return localStorage.getItem('name');
+    return localStorage.getItem('username');
   }
 
   getLoginStatus$(): BehaviorSubject<boolean> {
@@ -81,6 +81,35 @@ export class UserService {
     this.loginStatus$.next(!!token);
     this.username$.next(username);
     this.userRole$.next(role);
+  }
+
+  updateUser(edited_user: User): Observable<any> {
+    const updateData = {
+      id: edited_user.id,
+      username: edited_user.username,
+      email: edited_user.email,
+      birthdate: edited_user.birthdate,
+      isAdmin: edited_user.isAdmin,
+    };
+    return this.#http.put(this.apiUrl + 'auth/user/edit/'+edited_user.id+'', updateData).pipe(
+      tap(() =>{
+        this.refreshStateFromLocalStorage();
+      })
+    )
+  }
+  getUserById(id: number): Observable<User> {
+    return this.#http.get<User>(this.apiUrl + 'auth/user/'+id+'');
+  }
+  getUsers(): Observable<User[]> {
+    return this.#http.get<User[]>(this.apiUrl + 'auth/user');
+  }
+
+  deleteUser(id: number): Observable<User>{
+    return this.#http.delete<User>(this.apiUrl + 'auth/user/delete/'+id+'').pipe(
+      tap(() => {
+        this.refreshStateFromLocalStorage();
+      })
+    )
   }
 
 

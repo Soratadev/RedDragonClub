@@ -30,10 +30,8 @@ export class DropdownComponent implements OnInit {
 
       // Actualiza las opciones dinámicamente
       this.options = this.isAdmin
-        ? ['Add new BG', 'Edit', 'Delete']
-        : isLogged
-          ? ['Profile', 'Booking']
-          : []; // Si no está logueado, no hay opciones
+        ? ['Profiles', 'Add new BG', 'Manage BG']
+        : []; // Si no está logueado, estará vacío
     });
   }
 
@@ -46,20 +44,14 @@ export class DropdownComponent implements OnInit {
     this.isOpen = false;
 
     switch (option) {
+      case 'Profiles':
+        this.#router.navigate(['/auth/profiles']);
+        break;
       case 'Add new BG':
         this.#router.navigate(['/bg/new']);
         break;
-      case 'Edit':
-        this.#router.navigate(['/bg/edit']);
-        break;
-      case 'Delete':
-        this.#router.navigate(['/bg/delete']);
-        break;
-      case 'Profile':
-        this.#router.navigate(['/auth/dashboard']);
-        break;
-      case 'Booking':
-        this.#router.navigate(['/bg/book']);
+      case 'Manage BG':
+        this.#router.navigate(['/auth/manage-bg']);
         break;
       default:
         console.log('Unknown option:', option);

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import {bgIdResolver} from './shared/resolvers/bgId.resolver';
+import {UserGuard} from './shared/resolvers/user.guard';
 
 export const routes: Routes = [
   {
@@ -32,13 +33,18 @@ export const routes: Routes = [
       },
       {
         path: 'register', loadComponent: () => import('./pages/auth/register/register.component').then(c => c.RegisterComponent)
+      },
+      {
+        path: 'profiles', loadComponent: () => import('./pages/auth/profiles/profiles.component').then(c => c.ProfilesComponent),
+        canActivate: [UserGuard]
+      },
+      {
+        path: 'manage-bg', loadComponent: () => import('./pages/auth/manage-bg/manage-bg.component').then(c => c.ManageBgComponent),
+        canActivate: [UserGuard]
       }
     ]
   },
-  /*{
-    path: 'dashboard', loadComponent: () => import('./pages/auth/dashboard/dashboard.component').then(c => c.DashboardComponent),
-    canActivate: [UserGuard]
-  },*/
+
   {
     path: '**', redirectTo: 'home', pathMatch: 'full'
   }
