@@ -21,7 +21,7 @@ export class BgBookingComponent {
   addBook(book: Booking) {
     try {
       this.#bookingService.add(book);
-      this.#router.navigate(['/bg/catalog']);
+      this.#router.navigate(['/public/catalog']);
     } catch (error) {
       console.error('Error adding reservation:', error);
 

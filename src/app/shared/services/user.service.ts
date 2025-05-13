@@ -25,9 +25,7 @@ export class UserService {
           localStorage.setItem('jwt_token', res.token);
           localStorage.setItem('name', res.name);
           localStorage.setItem('role', res.role);
-          this.loginStatus$.next(true);
-          this.username$.next(res.name);
-          this.userRole$.next(res.role);
+          this.refreshStateFromLocalStorage();
         })
       );
   }
@@ -35,10 +33,7 @@ export class UserService {
   logout(): void {
     localStorage.removeItem('jwt_token');
     localStorage.removeItem('name');
-    this.loginStatus$.next(false);
-    this.username$.next(null);
-    this.userRole$.next(null);
-
+    this.refreshStateFromLocalStorage();
   }
 
   isLogged(): boolean {
@@ -77,6 +72,17 @@ export class UserService {
   private getStoredUserRole(): string | null {
     return localStorage.getItem('role');
   }
+
+  refreshStateFromLocalStorage(): void {
+    const token = this.getToken();
+    const username = this.getStoredUsername();
+    const role = this.getStoredUserRole();
+
+    this.loginStatus$.next(!!token);
+    this.username$.next(username);
+    this.userRole$.next(role);
+  }
+
 
 
 

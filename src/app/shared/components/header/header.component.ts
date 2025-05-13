@@ -1,7 +1,7 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {UserService} from '../../services/user.service';
-import {Subscription} from 'rxjs';
+import {combineLatest, Subscription} from 'rxjs';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -16,22 +16,30 @@ export class HeaderComponent implements OnInit, OnDestroy{
   private subscription = new Subscription();
 
   isLogged = false;
+  isAdmin = false;
   username: string | null = null;
 
 
   ngOnInit() {
     this.subscription.add(
-      this.#userService.getLoginStatus$().subscribe((status) => {
-        this.isLogged = status;
+      combineLatest([
+        this.#userService.getLoginStatus$(),
+        this.#userService.getUsername$(),
+        this.#userService.getUserRole$()
+      ]).subscribe(([isLogged, username, role]) => {
+        this.isLogged = isLogged;
+        this.username = username;
+        this.isAdmin = role === 'ROLE_ADMIN';
       })
     );
-    this.subscription.add(
-      this.#userService.getUsername$().subscribe(name => {
-        this.username = name;
-      })
-    );
-
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isLogged']) {
+      console.log('isLogged has changed', changes['isLogged'].currentValue);
+    }
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

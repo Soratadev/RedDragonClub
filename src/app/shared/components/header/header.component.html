@@ -11,19 +11,19 @@
       <li><a [routerLink]="['home']" routerLinkActive="text-dorado">Home</a></li>
       <li><a [routerLink]="['catalog']" routerLinkActive="text-dorado">Catalog</a></li>
       <li><a href="https://www.eldragonrojo.es/" target="_blank" class="">Shop</a></li>
-      <!--<li><a [routerLink]="['auth', 'login']" (click)="onButtonClick()" routerLinkActive="text-dorado">{{ isLogged ? 'Logout' : 'Login' }}</a></li>-->
       <li><button (click)="onButtonClick()">{{ isLogged ? 'Logout' : 'Login' }}</button></li>
-      <!--<li><a [routerLink]="['auth', 'register']" routerLinkActive="text-dorado">Register</a></li>-->
       <li *ngIf="!isLogged">
-        <!-- Mostrar 'Register' si no está logueado -->
         <a [routerLink]="['auth', 'register']" routerLinkActive="text-dorado">Register</a>
       </li>
       <li *ngIf="isLogged">
-        <!-- Mostrar el nombre de usuario si está logueado -->
         <button (click)="onUsernameClick()">
-          {{ username }}
+          {{ username || 'Username'}}
         </button>
       </li>
+      <li *ngIf="isLogged && isAdmin">
+        <a [routerLink]="['bg', 'new']" routerLinkActive="text-dorado">Add new Gameboard</a>
+      </li>
+
 
     </ul>
   </nav>

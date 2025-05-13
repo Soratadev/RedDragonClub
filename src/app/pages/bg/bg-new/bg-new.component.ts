@@ -29,7 +29,7 @@ export class BgNewComponent {
 
         // Esperar un momento para mostrar el mensaje de éxito
         setTimeout(() => {
-          this.#router.navigate(['/bg/catalog']);
+          this.#router.navigate(['/public/catalog']);
         }, 1500);
       },
       error: (err) => {

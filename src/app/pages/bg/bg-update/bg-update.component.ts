@@ -49,7 +49,7 @@ export class BgUpdateComponent implements OnInit {
         this.#bgService.refreshBoardGames().subscribe({
           next: () => {
             setTimeout(() => {
-              this.#router.navigate(['/bg/catalog']);
+              this.#router.navigate(['/public/catalog']);
             }, 1500); // Espera 1.5 segundos antes de navegar
           }
         });

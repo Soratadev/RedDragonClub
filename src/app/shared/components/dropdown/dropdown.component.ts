@@ -10,7 +10,7 @@ import {CommonModule} from '@angular/common';
 export class DropdownComponent {
   isOpen = false;
   selectedOption: string | null = null;
-  options = ['Catalog', 'new', 'update'];
+  options = ['New', 'Update', 'Delete'];
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;

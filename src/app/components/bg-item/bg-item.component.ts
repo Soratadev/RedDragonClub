@@ -4,6 +4,7 @@ import { bookedChange } from '../../shared/interfaces/bookedChange.interface';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {UserService} from '../../shared/services/user.service';
+import {combineLatest, distinctUntilChanged, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-bg-item',
@@ -15,19 +16,23 @@ export class BgItemComponent implements OnInit{
   boardgame = input.required<BoardGame>();
   bookedChange = output<bookedChange>();
   deleteBg = output<number>();
-  //isBooked = computed(() => this.boardgame().Booked);
   readonly #userService = inject(UserService);
+  private subscription = new Subscription();
 
   isLogged = false;
   isAdmin = false;
 
   ngOnInit(): void {
-    this.#userService.getLoginStatus$().subscribe(status => {
-      this.isLogged = status;
-    });
-    this.#userService.getUserRole$().subscribe(role => {
-      this.isAdmin = role === 'ROLE_ADMIN';
-    });
+    this.subscription.add(
+      combineLatest([
+        this.#userService.getLoginStatus$(),
+        this.#userService.getUserRole$()
+      ]).pipe(distinctUntilChanged()) // Asegura que solo nuevos valores únicos disparen eventos
+        .subscribe(([isLogged, role]) => {
+          this.isLogged = isLogged;
+          this.isAdmin = role === 'ROLE_ADMIN'; // Configura si el usuario es admin
+        })
+    );
 
   }
 
