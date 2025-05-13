@@ -1,5 +1,5 @@
 <div class="bg-granate p-1">
-  <nav class="flex flex-wrap items-center justify-between mx-auto">
+  <nav class="flex flex-wrap items-center justify-between mx-auto ml-8">
     <a [routerLink]="['home']">
       <img src="assets/img/dragon.jpeg" alt="El Dragón Rojo" class="flex items-center w-16"/>
     </a>
@@ -7,24 +7,26 @@
       <p class="text-5xl font-bold self-center text-dorado font-serif">Red Dragon Club</p>
       <p class="text-xl font-bold self-center text-dorado text-end">your hobby center</p>
     </div>
-    <ul class="flex flex-row text-white space-x-4 mr-2 font-medium">
+    <ul class="flex flex-row text-white mr-10 font-medium gap-4">
       <li><a [routerLink]="['home']" routerLinkActive="text-dorado">Home</a></li>
       <li><a [routerLink]="['catalog']" routerLinkActive="text-dorado">Catalog</a></li>
       <li><a href="https://www.eldragonrojo.es/" target="_blank" class="">Shop</a></li>
-      <li><button (click)="onButtonClick()">{{ isLogged ? 'Logout' : 'Login' }}</button></li>
       <li *ngIf="!isLogged">
         <a [routerLink]="['auth', 'register']" routerLinkActive="text-dorado">Register</a>
       </li>
-      <li *ngIf="isLogged">
-        <button (click)="onUsernameClick()">
+      <li *ngIf="isLogged" class="relative inline-block">
+        <button class="cursor-pointer" (click)="toggleDropdown()">
           {{ username || 'Username'}}
         </button>
+        <div *ngIf="isDropdownOpen" class="absolute w-28 right-0 mt-2 border border-gray-950 bg-granate z-auto">
+          <div
+            *ngFor="let option of dropdownOptions"
+            (click)="onDropdownOptionSelected(option)"
+            class="p-2 cursor-pointer hover:bg-dorado">{{ option }}
+          </div>
+        </div>
       </li>
-      <li *ngIf="isLogged && isAdmin">
-        <a [routerLink]="['bg', 'new']" routerLinkActive="text-dorado">Add new Gameboard</a>
-      </li>
-
-
+      <li><button (click)="onButtonClick()">{{ isLogged ? 'Logout' : 'Login' }}</button></li>
     </ul>
   </nav>
 </div>

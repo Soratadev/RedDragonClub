@@ -4,7 +4,7 @@
     <div *ngIf="boardgame().Booked" class="bg-red-400 text-white text-center font-bold">Booked</div>
   </div>
   <hr>
-  <div class="mx-2 mt-2 h-[270px] overflow-y-auto">
+  <div class="mx-2 mt-2 h-[275px] overflow-y-auto">
     <div class="h-7" *ngFor="let attribute of boardgameAttributes">
       <div [ngClass]="{'truncate': attribute.key !== 'description'}">
         <label [for]="'bg-item-' + attribute.key" class="font-bold">{{ attribute.label }}: </label>
@@ -13,23 +13,24 @@
     </div>
   </div>
   <!-- Buttons -->
-    <div class="flex justify-around">
-      <div *ngIf="isLogged && isAdmin" class="flex gap-3">
-        <button
-          class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-blue-200 hover:bg-blue-400 font-bold"
-          [routerLink]="['/bg', 'update', boardgame().id]"
-        >Edit</button>
-        <button
-          class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-red-400 hover:bg-red-600 font-bold"
-          (click)="onDelete()"
-        >Delete</button>
-      </div>
-      <div *ngIf="isLogged" class="flex gap-3">
-        <button
-          class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-orange-200 hover:bg-orange-400 font-bold"
-          [routerLink]="['/bg', 'book', boardgame().id]"
-          [disabled]="boardgame().Booked"
-        >Book</button>
-      </div>
+  <div class="flex justify-around">
+    <!--<div *ngIf="isLogged && isAdmin" class="flex gap-3">
+      <button
+        class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-blue-200 hover:bg-blue-400 font-bold"
+        [routerLink]="['/bg', 'update', boardgame().id]"
+      >Edit</button>
+      <button
+        class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-red-400 hover:bg-red-600 font-bold"
+        (click)="onDelete()"
+      >Delete</button>
+    </div>-->
+    <div *ngIf="isLogged" class="flex gap-3">
+      <button
+        class="rounded-full my-4 p-2 border-2 px-4 border-gray-950 bg-orange-200 hover:bg-orange-400 font-bold"
+        [routerLink]="['/bg', 'book', boardgame().id]"
+        [disabled]="boardgame().Booked"
+      >Book</button>
     </div>
+  </div>
+
 </div>

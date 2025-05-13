@@ -1,6 +1,6 @@
 <div class="relative inline-block">
   <button (click)="toggleDropdown()" class="cursor-pointer text-white">
-    {{ selectedOption || 'Board games' }}
+    {{ selectedOption || 'Username'}}
   </button>
   <div *ngIf="isOpen" class="block absolute border border-gray-950 bg-granate z-auto">
     <div *ngFor="let option of options" (click)="selectOption(option)" class="p-8 cursor-pointer hover:bg-dorado">
