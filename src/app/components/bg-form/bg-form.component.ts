@@ -23,7 +23,7 @@ export class BgFormComponent implements OnInit {
   bg = input<BoardGame>(this.#bgService.default_bg);
   addBG = output<BoardGame>({alias: 'sendBG'});
   textButton = computed(() =>
-    this.#bgService.isDefaultBg(this.bg()) ? 'Add new Game' : 'Update Game');
+    this.#bgService.isDefaultBg(this.bg()) ? 'New Game' : 'Save Game');
 
   ngOnInit(): void {
     this.getCategories();
@@ -103,7 +103,7 @@ export class BgFormComponent implements OnInit {
 
       };
       this.addBG.emit(Bg);
-      this.#router.navigate(['/bg/catalog']);
+      this.#router.navigate(['/catalog']);
     }
   }
 

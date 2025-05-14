@@ -16,8 +16,9 @@ export class BgCatalogComponent implements OnInit, OnDestroy{
   private subscription: Subscription = new Subscription();
   isLoading: boolean = false;
 
+
   ngOnInit(): void {
-    this.callApiService();
+    //this.callApiService();
 
     this.loadBoardGames();
 
@@ -30,12 +31,6 @@ export class BgCatalogComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  private callApiService() {
-    this.#bgService.getBoardgame().subscribe((data) => {
-      this.boardGames = data;
-    });
   }
 
   private loadBoardGames():void {
@@ -62,11 +57,12 @@ export class BgCatalogComponent implements OnInit, OnDestroy{
       }
     });
   }
-  onBookedChange(event: { boardgame: BoardGame, Booked: boolean }) {
+  /*onBookedChange(event: { boardgame: BoardGame, Booked: boolean }) {
     const index = this.boardGames.findIndex(bg => bg.id === event.boardgame.id);
     if (index !== -1) {
       this.boardGames[index].Booked = event.Booked;
     }
-  }
+  }*/
+
 
 }

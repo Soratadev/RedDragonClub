@@ -48,7 +48,7 @@ export class BookFormComponent {
       };
       this.addBook.emit(Book);
       this.bg().Booked = true;
-      this.#router.navigate(['/bg/catalog']);
+      this.#router.navigate(['/catalog']);
     }
   }
 }

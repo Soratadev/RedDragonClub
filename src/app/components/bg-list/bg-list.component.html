@@ -1,7 +1,5 @@
 <div class="sm:block md:flex flex-wrap justify-center gap-2">
   @for(boardgame of boardgames(); track boardgame.id){
     <app-bg-item [boardgame]="boardgame" (deleteBg)="onDeleteBg($event)" (bookedChange)="saveBooked($event)"/>
-  } @empty {
-    <!--<div class="text-center text-red-500 text-4xl font-bold">Loading board games</div>-->
   }
 </div>

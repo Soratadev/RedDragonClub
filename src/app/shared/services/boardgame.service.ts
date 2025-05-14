@@ -102,4 +102,15 @@ export class BoardgameService {
   isDefaultBg(bg: BoardGame): boolean {
     return bg.id === this.default_bg.id;
   }
+
+  getBoardgamesWithPagination(page: number, limit: number): Observable<BoardGame[]> {
+    const params = { page: page.toString(), limit: limit.toString() };
+    return this.#http.get<BoardGame[]>(`${this.apiUrl}public/catalog`, { params }).pipe(
+      tap((bg) => {
+        if (page === 1) {
+          this.bgSubject.next(bg);
+        }
+      })
+    );
+  }
 }

@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy{
       case 'Add new BG':
         this.#router.navigate(['/bg/new']);
         break;
-      case 'MAnage BG':
+      case 'Manage BG':
         this.#router.navigate(['/auth/manage-bg']);
         break;
       default:
