@@ -10,7 +10,7 @@
   <table *ngIf="boardgames.length > 0" class="w-[80%] mx-auto table-auto border-collapse border border-black">
     <thead>
     <tr class="bg-dorado text-black">
-      <th class="border border-gray-300 p-2">ID</th>
+      <!--<th class="border border-gray-300 p-2">ID</th>-->
       <th class="border border-gray-300 p-2">Title</th>
       <th class="border border-gray-300 p-2">Designer</th>
       <th class="border border-gray-300 p-2">Players</th>
@@ -25,12 +25,12 @@
     </thead>
     <tbody>
     <tr *ngFor="let bg of boardgames" class="text-center">
-      <td class="border border-gray-300 p-2 text-center">{{ bg.id }}</td>
+      <!--<td class="border border-gray-300 p-2 text-center">{{ bg.cover }}</td>-->
       <td class="border border-gray-300 p-2">{{ bg.name }}</td>
       <td class="border border-gray-300 p-2">{{ bg.designer }}</td>
       <td class="border border-gray-300 p-2">{{ bg.players }}</td>
       <td class="border border-gray-300 p-2">{{ bg.playingTime }}</td>
-      <td class="border border-gray-300 p-2">{{ bg.categories }}</td>
+      <td class="border border-gray-300 p-2">{{ getCategoryNames(bg.categories) }}</td>
       <td class="border border-gray-300 p-2">{{ bg.complexity }}</td>
       <td class="border border-gray-300 p-2">{{ bg.age }}</td>
       <td class="border border-gray-300 p-2">{{ bg.description }}</td>

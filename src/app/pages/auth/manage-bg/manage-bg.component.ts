@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {BoardgameService} from '../../../shared/services/boardgame.service';
-import {BoardGame} from '../../../shared/interfaces/boardgame.interface';
+import {BoardGame, Category} from '../../../shared/interfaces/boardgame.interface';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
@@ -18,6 +18,7 @@ import {RouterLink} from '@angular/router';
 export class ManageBgComponent implements OnInit {
   readonly #bgService = inject(BoardgameService);
   boardgames: BoardGame[] = [];
+  category: Category[] = [];
 
   ngOnInit(): void {
     this.loadBoardGames();
@@ -25,8 +26,11 @@ export class ManageBgComponent implements OnInit {
 
   private loadBoardGames(): void {
     this.#bgService.getBoardgame().subscribe({
-      next: (games: BoardGame[]) => {
-        this.boardgames = games;
+      next: (bg: BoardGame[]) => {
+        this.boardgames = bg.map((boardgame) => ({
+          ...boardgame,
+          categories: boardgame.categories || [] // Asegurar que "categories" siempre sea un arreglo
+        }));
       },
       error: (error: any) => {
         console.error('Failed to load board games:', error);
@@ -47,5 +51,12 @@ export class ManageBgComponent implements OnInit {
         },
       });
     }
+  }
+
+  getCategoryNames(categories: Category[]): string {
+    if (!categories || categories.length === 0) {
+      return 'No categories';
+    }
+    return categories.map(category => category.name).join(', ');
   }
 }

@@ -8,9 +8,9 @@ import {FooterComponent} from './shared/components/footer/footer.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template:`
-  <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
+  <div class="grid grid-rows-[auto_1fr_auto] h-screen">
     <app-header/>
-    <main class="w-full min-h-full">
+    <main class="w-full min-h-full overflow-y-auto">
       <router-outlet/>
     </main>
     <app-footer/>

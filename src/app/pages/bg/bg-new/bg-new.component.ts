@@ -29,8 +29,8 @@ export class BgNewComponent {
 
         // Esperar un momento para mostrar el mensaje de éxito
         setTimeout(() => {
-          this.#router.navigate(['/public/catalog']);
-        }, 1500);
+          this.#router.navigate(['/catalog']);
+        }, 100);
       },
       error: (err) => {
         this.error = 'Error creating board game: ' +
